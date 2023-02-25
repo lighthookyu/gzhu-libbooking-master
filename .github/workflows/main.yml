@@ -1,0 +1,25 @@
+name: clock-in
+
+on:
+  schedule:
+    - cron: "31 22,4,8,12 * * *"
+
+  workflow_dispatch:
+
+jobs:
+  Clock_in:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10.6'
+
+      - run: pip3 install -r requirements.txt
+
+      - env:
+          XUHAO: ${{ secrets.XUHAO }}
+          MIMA: ${{ secrets.MIMA }}
+        run: python main.py
