@@ -107,6 +107,10 @@ class GZHU(object):
                          dev_id=dev_id)
         return
 
+    def sign(self,acc_no,dev_id):
+        url='http://update.unifound.net/wxnotice/s.aspx?c='+str(acc_no)+'_Seat_'+str(dev_id)+'_1EW'
+        self.client.post(url)
+        print("签到成功")
 
 def start():
     with open('config.json', 'r') as fp:
@@ -123,7 +127,8 @@ def start():
                       set_bt=task['bt'],
                       set_et=task['et'],
                       dev_id=dev_id)
+        g.sign(accNo,dev_id)
 
 
-def main_handler(event, context):
+if __name__ == '__main__':
     start()
