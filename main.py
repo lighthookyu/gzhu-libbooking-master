@@ -96,7 +96,8 @@ class GZHU(object):
         print(json.loads(resp.text)['message'])
 
     def reserve(self, acc_no, set_bt, set_et, dev_id):
-        the_day_after_tomorrow = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(days=2),
+        # 从后天修正为明天 2->1
+        the_day_after_tomorrow = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(days=1),
                                                             '%Y-%m-%d')
         bt = '{} {}'.format(the_day_after_tomorrow, set_bt)
         et = '{} {}'.format(the_day_after_tomorrow, set_et)
